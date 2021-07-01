@@ -50,18 +50,19 @@ header>div>h1 {
 }
 
 .canvas {
-    width: 280px;
-    height: 280px;
-    background-color: black;
+    cursor: crosshair;
 }
 
 .result {
     width: 280px;
     height: 280px;
-    font-size: 140px;
+    font-size: 162px;
     color: black;
     background-color: whitesmoke;
+    display: flex;
     text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .full-container p {

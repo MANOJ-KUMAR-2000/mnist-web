@@ -23,20 +23,20 @@
         <div class="canvas-container">
             <div>
                 <div style="width: 280px; height:280px">
-                    <canvas id="canvass" class="canvas">
+                    <canvas id="canvass" class="canvas" width="280" height="280">
 
-                </canvas>
+                    </canvas>
                 </div>
                 <div class="btns">
-                    <button><i class="fas fa-eraser"></i></button>
-                    <button>PREDICT</button>
+                    <button id="clear-btn"><i class="fas fa-eraser"></i></button>
+                    <button id="predict-btn">PREDICT</button>
                 </div>
             </div>
         </div>
 
         <div>
-            <div class="result">
-
+            <div id="result" class="result">
+                5
             </div>
             <p>result</p>
         </div>
@@ -64,6 +64,8 @@
 
     <script src="assets/draw.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js" integrity="sha512-OqcrADJLG261FZjar4Z6c4CfLqd861A3yPNMb+vRQ2JwzFT49WT4lozrh3bcKxHxtDTgNiqgYbEUStzvZQRfgQ==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
 </body>
 
 </html>
