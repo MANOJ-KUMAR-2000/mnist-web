@@ -7,7 +7,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
 
-app.listen(3300);
+app.listen(process.env.PORT||3300);
 console.log("listening.........");
 
 
