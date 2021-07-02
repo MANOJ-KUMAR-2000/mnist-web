@@ -11,10 +11,23 @@ var boundings = canvas.getBoundingClientRect();
 var clear_btn = document.getElementById('clear-btn');
 var predict_btn = document.getElementById('predict-btn');
 var result_space = document.getElementById('result');
+let classes = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+window.addEventListener("load", () => {
+    loadModel();
+})
+
+async function loadModel() {
+    model = undefined;
+    model = await tf.loadLayersModel("./model/mnistJSModel/model.json");
+    console.log("model loaded")
+}
+
 
 
 function clear() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    result_space.innerText = " ";
 }
 
 function start(e) {
@@ -55,19 +68,14 @@ function preprocessCanvas(image) {
 async function predcit() {
     html2canvas(document.getElementById("canvass"))
         .then((img) => {
-            fetch('/pre', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ img_tensor: preprocessCanvas(img) })
-                }).then((response) => {
-                    response.json()
-                        .then(data => {
-                            result_space.innerText = data.num;
-                        })
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+
+            let predictions = model.predict(preprocessCanvas(img)).data()
+            predictions.then(function(res) {
+                let results = Array.from(res);
+                ans = classes[results.indexOf(Math.max(...results))]
+                console.log(results);
+                if (results[ans] > 0.2) { result_space.innerText = String(ans); } else { result_space.innerHTML = '<h6 style="width:100%;height:100%">&#128565;</h6>'; }
+            })
         })
 }
 
